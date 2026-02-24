@@ -71,23 +71,3 @@ Upstash Redis (Rate Limiting)
 Render (Backend + Frontend hosting)
 
 MongoDB Atlas (Database)
-
-## 📂 Project Structure
-
-```
-mern_thinkboard/
-│
-├── backend/
-│   ├── models/
-│   ├── routes/
-│   ├── controllers/
-│   ├── middleware/
-│   └── server.js
-│
-├── frontend/
-│   ├── components/
-│   ├── pages/
-│   └── App.js
-│
-└── README.md
-```
