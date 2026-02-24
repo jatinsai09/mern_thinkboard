@@ -72,8 +72,9 @@ Render (Backend + Frontend hosting)
 
 MongoDB Atlas (Database)
 
-📂 Project Structure
+## 📂 Project Structure
 
+```
 mern_thinkboard/
 │
 ├── backend/
@@ -89,3 +90,4 @@ mern_thinkboard/
 │   └── App.js
 │
 └── README.md
+```
