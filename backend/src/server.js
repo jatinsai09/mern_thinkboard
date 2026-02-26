@@ -1,51 +1,51 @@
-import express from 'express';
-import dotenv from 'dotenv';
-import cors from 'cors';
-import path from "path"
-
-
+import express from "express";
+import dotenv from "dotenv";
+import cors from "cors";
+import path from "path";
 
 import notesRoutes from "./routes/notesRoutes.js";
-import { connectDB } from './config/db.js';
-import rateLimiter from './middleware/rateLimiter.js';
+import authRoutes from "./routes/authRoutes.js";
+import { connectDB } from "./config/db.js";
+import rateLimiter from "./middleware/rateLimiter.js";
+import auth from "./middleware/auth.js";
 
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 5002;
 const __dirname = path.resolve();
 
+app.set("trust proxy", 1);
 
 if (process.env.NODE_ENV !== "production") {
-    app.use(cors({
-        origin: 'http://localhost:5173', // Replace with your frontend URL
-    }));
+  app.use(
+    cors({
+      origin: "http://localhost:5173", // Replace with your frontend URL
+    }),
+  );
 }
 
-app.use(rateLimiter); // Apply rate limiting middleware to all routes
 app.use(express.json()); // Middleware to parse JSON request bodies
-
+app.use(rateLimiter); // Apply rate limiting middleware to all routes
 
 app.use("/api/notes", notesRoutes);
 
-if (process.env.NODE_ENV === "production") {
-    app.use(express.static(path.join(__dirname, "../frontend/dist")));
+app.use("/api/auth", authRoutes);
 
-    app.get("*", (req, res) => {
-        res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
-    });
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../frontend/dist")));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
+  });
 }
 
 // What is an Endpoint?
-// An endpoint is a combination of a URL + HTTP method that lets the 
+// An endpoint is a combination of a URL + HTTP method that lets the
 // client interact with a specific resource
 
 connectDB().then(() => {
-    app.listen(PORT, () => {
-        console.log(`Server is running on port ${PORT}`);
-    });
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+  });
 });
-
-
-
-// mongodb+srv://jatinsai09:JatinSaiS60@cluster0.xdhgxq8.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0

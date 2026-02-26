@@ -1,23 +1,22 @@
-import React from 'react'
-import { useState, useEffect } from "react"
-import { useNavigate, useParams } from "react-router"
-import api from "../lib/axios.js"
-import toast from "react-hot-toast"
-import { ArrowLeftIcon, LoaderIcon, Trash2Icon } from 'lucide-react'
-import { Link } from "react-router"
-
+import React from "react";
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import api from "../lib/axios.js";
+import toast from "react-hot-toast";
+import { ArrowLeftIcon, LoaderIcon, Trash2Icon } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const NoteDetailPage = () => {
   const [note, setNote] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [saving, setSaving] = useState(false); 
+  const [saving, setSaving] = useState(false);
 
   const navigate = useNavigate();
 
   const { id } = useParams();
 
   useEffect(() => {
-    const fetchNote = async() => {
+    const fetchNote = async () => {
       try {
         const res = await api.get(`/notes/${id}`);
         setNote(res.data);
@@ -74,7 +73,7 @@ const NoteDetailPage = () => {
       </div>
     );
   }
-  
+
   return (
     <div className="min-h-screen bg-base-200">
       <div className="container mx-auto px-4 py-8">
@@ -84,7 +83,10 @@ const NoteDetailPage = () => {
               <ArrowLeftIcon className="h-5 w-5" />
               Back to Notes
             </Link>
-            <button onClick={handleDelete} className="btn btn-error btn-outline">
+            <button
+              onClick={handleDelete}
+              className="btn btn-error btn-outline"
+            >
               <Trash2Icon className="h-5 w-5" />
               Delete Note
             </button>
@@ -113,12 +115,18 @@ const NoteDetailPage = () => {
                   placeholder="Write your note here..."
                   className="textarea textarea-bordered h-32"
                   value={note.content}
-                  onChange={(e) => setNote({ ...note, content: e.target.value })}
+                  onChange={(e) =>
+                    setNote({ ...note, content: e.target.value })
+                  }
                 />
               </div>
 
               <div className="card-actions justify-end">
-                <button className="btn btn-primary" disabled={saving} onClick={handleSave}>
+                <button
+                  className="btn btn-primary"
+                  disabled={saving}
+                  onClick={handleSave}
+                >
                   {saving ? "Saving..." : "Save Changes"}
                 </button>
               </div>
@@ -128,6 +136,6 @@ const NoteDetailPage = () => {
       </div>
     </div>
   );
-}
+};
 
-export default NoteDetailPage
+export default NoteDetailPage;
