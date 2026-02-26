@@ -45,7 +45,3 @@ connectDB().then(() => {
         console.log(`Server is running on port ${PORT}`);
     });
 });
-
-
-
-// mongodb+srv://jatinsai09:JatinSaiS60@cluster0.xdhgxq8.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
