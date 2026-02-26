@@ -29,7 +29,7 @@ const Navbar = () => {
   return (
     <header className="bg-base-300 border-b border-base-content/10">
       <div className="mx-auto max-w-6xl p-4">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between flex-wrap">
           <Link
             to="/"
             className="text-3xl font-bold text-primary font-mono tracking-tighter"
@@ -40,7 +40,7 @@ const Navbar = () => {
           <div className="flex items-center gap-4">
             {token ? (
               <>
-                <Link to="/create" className="btn btn-primary">
+                <Link to="/create" className="btn btn-outline btn-primary">
                   <PlusIcon className="size-5 mr-2" />
                   <span>New Note</span>
                 </Link>
