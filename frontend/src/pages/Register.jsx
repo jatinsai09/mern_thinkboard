@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../lib/axios.js";
+import { LoaderIcon } from "lucide-react";
 import axios from "axios";
 
 export default function Register() {
@@ -10,6 +11,7 @@ export default function Register() {
     email: "",
     password: "",
   });
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -18,6 +20,7 @@ export default function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
       const res = await api.post(`/auth/register`, form);
@@ -26,8 +29,18 @@ export default function Register() {
       navigate("/");
     } catch (err) {
       alert(err.response?.data?.message || "Registration failed");
+    } finally {
+      setLoading(false);
     }
   };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-base-200 flex items-center justify-center">
+        <LoaderIcon className="animate-spin size-10" />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-base-200 p-6">

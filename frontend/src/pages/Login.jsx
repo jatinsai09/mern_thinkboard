@@ -2,10 +2,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../lib/axios.js";
+import { LoaderIcon } from "lucide-react";
 import axios from "axios";
 
 export default function Login() {
   const [form, setForm] = useState({ email: "", password: "" });
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) =>
@@ -13,6 +15,7 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
       const res = await api.post(`/auth/login`, form);
@@ -21,8 +24,18 @@ export default function Login() {
       navigate("/");
     } catch (err) {
       alert(err.response?.data?.message || "Login failed");
+    } finally {
+      setLoading(false);
     }
   };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-base-200 flex items-center justify-center">
+        <LoaderIcon className="animate-spin size-10" />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-base-200 p-6">
