@@ -40,7 +40,7 @@ export default function Login() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-base-200 p-6">
+    <div className="min-h-screen flex items-center justify-center bg-base-200 p-6 [background:radial-gradient(125%_125%_at_50%_10%,#000_60%,#00FF9D40_100%)]">
       <div className="card w-full max-w-md shadow-lg bg-base-100">
         <div className="card-body">
           <h2 className="text-2xl font-bold text-center">Login</h2>
