@@ -1,13 +1,20 @@
 import { Link, useNavigate } from "react-router-dom";
 import { PlusIcon, LogOutIcon, LogInIcon, UserPlusIcon } from "lucide-react";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
 
   const logout = () => {
+    if (!window.confirm("Are you sure you want to logout?")) return;
+
     localStorage.removeItem("token");
-    navigate("/login");
+    toast.success("Logout successful!");
+    //navigate("/login");
+    setTimeout(() => {
+      navigate("/login");
+    }, 500);
   };
 
   // return <header className="bg-base-300 border-b border-base-content/10">
