@@ -20,7 +20,7 @@ app.set("trust proxy", 1);
 if (process.env.NODE_ENV !== "production") {
   app.use(
     cors({
-      origin: "http://localhost:5173", // Replace with your frontend URL
+      origin: process.env.CLIENT_URL, // Replace with your frontend URL
     }),
   );
 }

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../lib/axios.js";
 import { LoaderIcon } from "lucide-react";
+import toast from "react-hot-toast";
 import axios from "axios";
 
 export default function Login() {
@@ -21,9 +22,10 @@ export default function Login() {
       const res = await api.post(`/auth/login`, form);
 
       localStorage.setItem("token", res.data.token);
+      toast.success("Logged in successfully!");
       navigate("/");
     } catch (err) {
-      alert(err.response?.data?.message || "Login failed");
+      toast.error(err.response?.data?.message || "Login failed");
     } finally {
       setLoading(false);
     }
