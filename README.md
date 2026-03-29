@@ -8,7 +8,8 @@ ThinkBoard allows users to create, manage, and organize notes efficiently with a
 https://mern-thinkboard-wyda.onrender.com
 
 🚀 Features
-📝 Core Functionality
+
+📝 Core Functionality:
 
 ✅ Create Notes
 
@@ -24,7 +25,7 @@ https://mern-thinkboard-wyda.onrender.com
 
 ✅ RESTful API architecture
 
-🔐 Security & Backend Enhancements
+🔐 Security & Backend Enhancements:
 
 ⚡ Rate Limiting (Production-Ready)
 
