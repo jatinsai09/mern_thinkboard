@@ -59,12 +59,12 @@ const Navbar = () => {
               </>
             ) : (
               <>
-                <Link to="/login" className="btn btn-ghost">
+                <Link to="/login" className="btn btn-outline btn-primary">
                   <LogInIcon className="size-5 mr-2" />
                   <span>Login</span>
                 </Link>
 
-                <Link to="/register" className="btn btn-primary">
+                <Link to="/register" className="btn btn-outline btn-primary">
                   <UserPlusIcon className="size-5 mr-2" />
                   <span>Register</span>
                 </Link>

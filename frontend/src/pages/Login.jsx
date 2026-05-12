@@ -1,6 +1,7 @@
 // src/pages/Login.jsx
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../components/navbar.jsx";
 import api from "../lib/axios.js";
 import { LoaderIcon } from "lucide-react";
 import toast from "react-hot-toast";
@@ -40,44 +41,47 @@ export default function Login() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-base-200 p-6 [background:radial-gradient(125%_125%_at_50%_10%,#000_60%,#00FF9D40_100%)]">
-      <div className="card w-full max-w-md shadow-lg bg-base-100">
-        <div className="card-body">
-          <h2 className="text-2xl font-bold text-center">Login</h2>
+    <div>
+      <Navbar />
+      <div className="min-h-screen flex items-center justify-center bg-base-200 p-6 [background:radial-gradient(125%_125%_at_50%_10%,#000_60%,#00FF9D40_100%)]">
+        <div className="card w-full max-w-md shadow-lg bg-base-100">
+          <div className="card-body">
+            <h2 className="text-2xl font-bold text-center">Login</h2>
 
-          <form onSubmit={handleSubmit}>
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              className="input input-bordered w-full mb-3"
-              value={form.email}
-              onChange={handleChange}
-              required
-            />
+            <form onSubmit={handleSubmit}>
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                className="input input-bordered w-full mb-3"
+                value={form.email}
+                onChange={handleChange}
+                required
+              />
 
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              className="input input-bordered w-full mb-4"
-              value={form.password}
-              onChange={handleChange}
-              required
-            />
+              <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                className="input input-bordered w-full mb-4"
+                value={form.password}
+                onChange={handleChange}
+                required
+              />
 
-            <button className="btn btn-primary w-full">Login</button>
-          </form>
+              <button className="btn btn-primary w-full">Login</button>
+            </form>
 
-          <p className="text-center text-sm mt-3">
-            Don’t have an account?{" "}
-            <span
-              className="text-primary cursor-pointer"
-              onClick={() => navigate("/register")}
-            >
-              Register
-            </span>
-          </p>
+            <p className="text-center text-sm mt-3">
+              Don’t have an account?{" "}
+              <span
+                className="text-primary cursor-pointer"
+                onClick={() => navigate("/register")}
+              >
+                Register
+              </span>
+            </p>
+          </div>
         </div>
       </div>
     </div>
