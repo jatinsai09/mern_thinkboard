@@ -7,6 +7,18 @@ export const register = async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
+    if (password.length < 6) {
+      return res
+        .status(400)
+        .json({ message: "Password must be at least 6 characters" });
+    }
+
+    // check if email is valid
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ message: "Invalid email format" });
+    }
+
     const existingUser = await User.findOne({ email });
 
     if (existingUser) {
